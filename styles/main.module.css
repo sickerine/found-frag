@@ -1,10 +1,94 @@
 
-.blue {
-
+.iconcontainer {
+    width: 100%;
+    height: 280px;
+    position: relative;
+    background-color: var(--color2);
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: var(--color1_50) 0px 5px 15px;
+    cursor: pointer;
 }
 
+.iconcontainer:hover > .icon {
+    filter: brightness(125%);
+}
+
+.iconcontainer:hover > .charoverlay > .overlayrarity {
+    height: 7%;
+}
+
+
 .main_header {
-    height: 200px;
-    background-color: gray;
+    height: 415px;
     width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: var(--color1);
+    background-position: center 25%;
+    /* background-size: 75% ;  */
+    background-size:  cover; 
+    filter: brightness(50%)
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.25s;
+}
+
+.characterlist {
+
+    /* display: flex;
+    gap: 1fr;
+    justify-content: flex-start;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    margin: 10px;
+    grid-gap: 24px;
+    gap: 24px;
+}
+
+.charinfo {
+    position: absolute;
+    top: -200px;
+    height: 200px;
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+
+.charoverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 50%);
+}
+
+
+.overlayrarity {
+    width: 100%;
+    height:2%;
+    background-color: var(--color11);
+    position: absolute;
+    bottom: 0;
+    transition: height 0.25s;
+}
+
+.overlayrarity > .gradient {
+    position: absolute;
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 75%);
+    inset: 0;
 }

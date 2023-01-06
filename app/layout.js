@@ -1,22 +1,22 @@
 import "/styles/global.css"
 import styles from "/styles/main.module.css"
+import bg from "/images/top.png"
+import Head from 'next/head';
+import { Inter } from '@next/font/google';
+import { Children } from "react";
+
+const inter = Inter();
 
 function MainLayout({children})
 {
     return (
-        <html lang="en">
-            <head/>
+        <html className={inter.className} lang="en">
+            <Head>
+                <title>Home</title>
+            </Head>
             <body>
-                <div className={styles.main_header}>
-                    <article>
-                        
-                    </article>
-                </div>
-                <main>
-                    <article>
-                        {children}
-                    </article>
-                </main>
+                <nav></nav>
+                {children}
             </body>
         </html>
     )

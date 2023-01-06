@@ -1506,7 +1506,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060652864533446747/cha0003803_1_h.png",
         "Name": "ナトリイトリ",
-        "EnglishName": "Natoriitori",
+        "EnglishName": "Natriitri",
         "Rarity": 3,
         "Element": "無",
         "Position": "遠隔",
@@ -1538,7 +1538,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060654011881111672/cha0004001_1_h.png",
         "Name": "エムシリ",
-        "EnglishName": "Emushiri",
+        "EnglishName": "Emusiri",
         "Rarity": 1,
         "Element": "火",
         "Position": "遠隔",
@@ -2915,7 +2915,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060663085997756496/cha0008401_1_h.png",
         "Name": "モズヌ",
-        "EnglishName": "Mozno",
+        "EnglishName": "Moznu",
         "Rarity": 1,
         "Element": "土",
         "Position": "近接",
@@ -3139,7 +3139,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060663944638910494/cha0009301_1_h.png",
         "Name": "リネット[聖夜の音色]",
-        "EnglishName": "Linnett",
+        "EnglishName": "Linette",
         "Rarity": 3,
         "Element": "水",
         "Position": "遠隔",
@@ -3171,7 +3171,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060664231126642768/cha0009502_1_h.png",
         "Name": "ユーミュ",
-        "EnglishName": "Yumyu",
+        "EnglishName": "Yuumyu",
         "Rarity": 3,
         "Element": "闇",
         "Position": "近接",
@@ -3683,7 +3683,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060667210793758831/cha0011401_1_h.png",
         "Name": "マグネシグネ",
-        "EnglishName": "Maguneshigune",
+        "EnglishName": "Magnesigne",
         "Rarity": 3,
         "Element": "無",
         "Position": "遠隔",
@@ -3715,7 +3715,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060667382751834132/cha0011701_1_h.png",
         "Name": "ルゥナ",
-        "EnglishName": "Ruuna",
+        "EnglishName": "Luuna",
         "Rarity": 3,
         "Element": "光",
         "Position": "遠隔",
@@ -4163,7 +4163,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060668673276260372/cha0014301_1_h.png",
         "Name": "クジャク",
-        "EnglishName": "Kujak",
+        "EnglishName": "Kujaku",
         "Rarity": 3,
         "Element": "水",
         "Position": "近接",
@@ -4195,7 +4195,7 @@
     {
         "Icon": "https://cdn.discordapp.com/attachments/633768073068806144/1060668923923673149/cha0014501_1_h.png",
         "Name": "ケトシィ",
-        "EnglishName": "Ketoshii",
+        "EnglishName": "Cait Sith",
         "Rarity": 3,
         "Element": "2属性(水/闇)",
         "Position": "遠隔",

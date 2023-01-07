@@ -28,7 +28,29 @@
     background-position: center 25%;
     /* background-size: 75% ;  */
     background-size:  cover; 
-    filter: brightness(50%)
+    filter: brightness(50%) ;
+}
+
+.character_header {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 1000px;
+    background-repeat: no-repeat;
+    background-size:  auto 200%; 
+    background-position: center 60%;
+    box-shadow: inset 0px -500px 100px 00px var(--color1_D);
+    background-color: rgba(var(--dominantColor1), 0.5);
+    /* filter: brightness(50%) ; */
+}
+
+.character_header > div {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 200px;
+    background-color: var(--color1_D);
 }
 
 .icon {
@@ -80,7 +102,7 @@
 
 .overlayrarity {
     width: 100%;
-    height:2%;
+    height:1.5%;
     background-color: var(--color11);
     position: absolute;
     bottom: 0;
@@ -91,4 +113,84 @@
     position: absolute;
     background: linear-gradient(to right, rgba(255, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 75%);
     inset: 0;
+}
+
+.character_body {
+    width: 100%;
+    max-width: 1000px;
+    height: 100vh;
+    /* background-color: var(--color1); */
+    z-index: 2;
+    margin-top: 450px;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+    display: flex;
+}
+
+.character_body > nav {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 5px; */
+    /* background-color: var(--color5); */
+}
+
+.character_body > div {
+    flex: 1;
+    border-left: 2px solid rgb(202, 202, 202);
+    /* background-color: red; */
+}
+
+.character_body > nav > div {
+    width: 100%;
+    height: 55px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: grey;
+    display: flex;
+    padding-left: 25px;
+    font-weight: 600;
+    align-items: center;
+    cursor: pointer;
+}
+
+.character_body > nav > div.active {
+    background-color: rgba(var(--dominantColor1), 0.5);
+    backdrop-filter: blur(7px);
+    border-right: 3px solid white;
+    color: rgba(var(--dominantColor5), 1);
+    /* mix-blend-mode: difference; */
+}
+
+.character_body > nav > div:not(.active):hover {
+    background-color: rgba(var(--dominantColor2), 0.25);;
+    backdrop-filter: blur(7px);
+    color: rgba(255,255,255, 0.75);
+}
+
+.character_body > div > .title {
+    width: 100%;
+    height: 65px;
+    background: linear-gradient(to right,
+    rgba(var(--dominantColor1), 1) 10%,
+    rgba(var(--dominantColor2), 0.5) 25%,
+    rgba(var(--dominantColor3), 0.25),
+    rgba(0,0,0,0));
+    backdrop-filter: blur(7px);
+    color: rgba(var(--dominantColor5), 1);
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.character_body > div > .content {
+    background-color:rgb(9, 23, 39, 0.95);
+    backdrop-filter: blur(7px);
+    flex: 1;
+    height: 100%;
 }

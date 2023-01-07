@@ -1,6 +1,7 @@
 import classes from "/styles/main.module.css"
 import Image from "next/image"
 import bg from "/images/top.png"
+import Link from 'next/link'
 import characters from "/data/characters.json"
 
 function CharacterInformation({ item }) {
@@ -12,21 +13,23 @@ function CharacterInformation({ item }) {
     )
 }
 
-function CharIcon({ item }) {
+function CharIcon({ item, id }) {
     return (
-        <div className={classes.iconcontainer}>
-            <img
-                src={item.Icon ?? ""}
-                className={classes.icon}
-            />
-            <div className={classes.charoverlay}>
-                <div className={classes.overlayrarity}>
-                    <div className={classes.gradient}></div>
-                    <CharacterInformation item={item} />
+        <Link href={"/characters/"+id}>
+            <div className={classes.iconcontainer}>
+                <img
+                    src={item.Icon ?? ""}
+                    className={classes.icon}
+                />
+                <div className={classes.charoverlay}>
+                    <div className={classes.overlayrarity}>
+                        <div className={classes.gradient}></div>
+                        <CharacterInformation item={item} />
+                    </div>
                 </div>
+                {/* {item.Name} */}
             </div>
-            {/* {item.Name} */}
-        </div>
+        </Link>
     )
 }
 
@@ -41,7 +44,7 @@ function Home() {
                 <article>
                     <div className={classes.characterlist}>
                         {characters.map((item, i) => (
-                            <CharIcon key={i} item={item}></CharIcon>
+                            <CharIcon key={i} item={item} id={i}></CharIcon>
                         ))}
                     </div>
                 </article>

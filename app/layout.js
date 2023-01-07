@@ -1,21 +1,24 @@
 import "/styles/global.css"
 import styles from "/styles/main.module.css"
-import bg from "/images/top.png"
-import Head from 'next/head';
-import { Inter } from '@next/font/google';
+import Link from 'next/link';
+import { Poppins } from '@next/font/google';
 import { Children } from "react";
 
-const inter = Inter();
+const fnt = Poppins({
+    subsets: ['latin'],
+    weight: ['400', '600', '700']
+});
 
-function MainLayout({children})
-{
+function MainLayout({ children }) {
     return (
-        <html className={inter.className} lang="en">
-            <Head>
+        <html className={fnt.className} lang="en">
+            {/* <Head>
                 <title>Home</title>
-            </Head>
+            </Head> */}
             <body>
-                <nav></nav>
+                <nav>
+                    <Link href="/">Home</Link>
+                </nav>
                 {children}
             </body>
         </html>

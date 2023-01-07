@@ -1,6 +1,7 @@
 import "/styles/global.css"
 import Link from 'next/link';
 import { Poppins } from '@next/font/google';
+import Script from 'next/script';
 
 const fnt = Poppins({
     subsets: ['latin'],

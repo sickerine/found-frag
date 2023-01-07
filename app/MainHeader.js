@@ -5,11 +5,12 @@ import classes from "/styles/main.module.css"
 function MyComponent(props) {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     return (
-        <div className={isImageLoaded ? `${props.className} ${classes.loaded}` : `${props.className} ${classes.loaded}`} style={{
+        <div className={isImageLoaded ? `${props.className} ${classes.loaded}` : `${props.className} ${classes.loaded}`} >
+            <div className={classes.mainbg} style={{
             backgroundImage: `url(${props.src})`,
-        }}>
+        }}></div>
             {props.children ? props.children : null}
-            <img src={props.src} style={{display: "none"}} onLoad={() => {setIsImageLoaded(true)}} ></img>
+            {/* <img src={props.src} style={{display: "none"}} onLoad={() => {setIsImageLoaded(true)}} ></img> */}
         </div>
     );
 }

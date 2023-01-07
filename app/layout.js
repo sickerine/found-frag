@@ -13,7 +13,6 @@ function MainLayout({ children }) {
     return (
         <html className={fnt.className} lang="en">
             {/* <Head>
-                <title>Home</title>
             </Head> */}
             <body>
                 <nav>

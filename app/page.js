@@ -20,6 +20,7 @@ function CharIcon({ item, id }) {
                 <img
                     src={item.Icon ?? ""}
                     className={classes.icon}
+                    loading="lazy"
                 />
                 <div className={classes.charoverlay}>
                     <div className={classes.overlayrarity}>

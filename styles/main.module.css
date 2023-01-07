@@ -39,6 +39,7 @@
     background-repeat: no-repeat;
     background-size:  auto 200%; 
     background-position: center 60%;
+    /* background-position: 65% 90%; */
     box-shadow: inset 0px -500px 100px 00px var(--color1_D);
     background-color: rgba(var(--dominantColor1), 0.5);
     /* filter: brightness(50%) ; */
@@ -118,7 +119,6 @@
 .character_body {
     width: 100%;
     max-width: 1000px;
-    height: 50vh;
     /* background-color: var(--color1); */
     z-index: 2;
     margin-top: 450px;
@@ -193,6 +193,7 @@
     background-color:rgb(9, 23, 39, 0.75);
     backdrop-filter: blur(7px);
     flex: 1;
+    max-width: 798px;
 }
 
 .loading {
@@ -203,4 +204,88 @@
 .loaded {
     opacity: 1;
     transition: opacity 0.25s;
+}
+
+
+.gallery {
+    width: 100%;
+    max-width: 798px;
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: calc(50% - 10px) 50%;
+    padding: 10px;
+    gap: 10px;
+    grid-template-rows: 400px;
+}
+
+.gallery > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(var(--dominantColor1), 0.25);
+    padding: 20px;
+    border-radius: 10px;
+}
+.gallery > div:nth-child(1) > img {
+    transform: rotate(90deg);
+}
+
+.gallery > div > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+
+@media (max-width: 54rem) {
+    .character_body {
+        flex-direction: column;
+    }
+
+    .character_body > nav  {
+        width: 100%;
+        flex-direction: row;
+        height: auto;
+        box-shadow: inset 0px -10px 10px 0px rgba(0,0,0,0.85);
+    }
+
+    .character_body > nav > div {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        background-color: rgba(var(--dominantColor1), 0.5);
+        color: rgba(var(--dominantColor4), 1);
+    }
+
+    .character_body > nav > div.active {
+        border-right: 0;
+        color: rgba(var(--dominantColor5), 1);
+    }
+
+    .character_body > nav > div.active::before {
+        position: absolute;
+        content: "";
+        background-color: rgba(var(--dominantColor5), 1);
+        bottom : 0px;
+        width: 25%;
+        height: 3px;
+    }
+
+    .character_body > div {
+        border-left: 0;
+        z-index: 2;
+    }
+    .character_body > div > .title {
+        display: none;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: 100vw 100vw;
+    }
 }

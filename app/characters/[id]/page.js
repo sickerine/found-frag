@@ -4,23 +4,33 @@ import DominantColors from "./dominantColor.js"
 import MainHeader from "../../MainHeader.js"
 
 
-function CharacterPage({params})
-{
-   
+function CharacterPage({ params }) {
+
     return (
         <>
-            <DominantColors id={params.id}/>
+            <DominantColors id={params.id} />
             <MainHeader className={classes.character_header} src={characters[params.id].Pact5}
-                children={<div></div>}/>
+                children={<div></div>} />
             <div className={classes.character_body}>
                 <nav>
-                    <div className={classes.active}>Stats</div>
+                    <div>Stats</div>
                     <div>Abilities</div>
-                    <div>Gallery</div>
+                    <div className={classes.active}>Gallery</div>
                 </nav>
                 <div>
-                    <div className={classes.title}>STATS</div>
-                    <div className={classes.content}></div>
+                    <div className={classes.title}>GALLERY</div>
+                    <div className={classes.content}>
+                        <div className={classes.gallery}>
+                            <div>
+                                <img src={characters[params.id].Pact1} />
+                            </div>
+                            <div>
+                                <img src={characters[params.id].Pact5} />
+                            </div>
+                            {/* <img src={characters[params.id].Pact1} />
+                            <img src={characters[params.id].Pact5} /> */}
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

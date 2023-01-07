@@ -9,7 +9,7 @@ function FadeInImage(props) {
     return (
         <img
             src={props.src}
-            className={Loaded ? `${props.className} ${classes.loaded}` : `${props.className} ${classes.loading}`}
+            className={Loaded ? `${props.className} loaded` : `${props.className} loading`}
             onLoad={() => setLoaded(true)}
         />
     )

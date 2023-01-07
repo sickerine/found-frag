@@ -1,8 +1,9 @@
 import classes from "/styles/main.module.css"
-import Image from "next/image"
 import bg from "/images/top.png"
 import Link from 'next/link'
 import characters from "/data/characters.json"
+import FadeInImage from "./FadeInImage.js"
+import MainHeader from "./MainHeader.js"
 
 function CharacterInformation({ item }) {
     return (
@@ -15,9 +16,9 @@ function CharacterInformation({ item }) {
 
 function CharIcon({ item, id }) {
     return (
-        <Link href={"/characters/"+id}>
+        <Link href={"/characters/" + id}>
             <div className={classes.iconcontainer}>
-                <img
+                <FadeInImage
                     src={item.Icon ?? ""}
                     className={classes.icon}
                     loading="lazy"
@@ -37,10 +38,7 @@ function CharIcon({ item, id }) {
 function Home() {
     return (
         <>
-            <div className={classes.main_header} style={{
-                backgroundImage: `url(${bg.src})`,
-            }}>
-            </div>
+            <MainHeader className={classes.main_header} src={bg.src}/>
             <main>
                 <article>
                     <div className={classes.characterlist}>

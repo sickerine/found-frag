@@ -2,8 +2,9 @@
 import characters from "/data/characters.json"
 import { createGlobalStyle } from 'styled-components';
 
-function Style(params)
-{
+
+
+function Style(params) {
 
     const GlobalStyles = createGlobalStyle`
     html {
@@ -16,8 +17,8 @@ function Style(params)
     `;
 
     return (<>
-            <GlobalStyles />
-        </>)
+        <GlobalStyles />
+    </>)
 }
 
 export default Style

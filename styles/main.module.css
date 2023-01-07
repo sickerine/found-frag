@@ -194,3 +194,13 @@
     backdrop-filter: blur(7px);
     flex: 1;
 }
+
+.loading {
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.loaded {
+    opacity: 1;
+    transition: opacity 0.25s;
+}

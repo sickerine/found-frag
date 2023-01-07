@@ -1,6 +1,7 @@
 import characters from "/data/characters.json"
 import classes from "/styles/main.module.css"
 import DominantColors from "./dominantColor.js"
+import MainHeader from "../../MainHeader.js"
 
 
 function CharacterPage({params})
@@ -9,11 +10,8 @@ function CharacterPage({params})
     return (
         <>
             <DominantColors id={params.id}/>
-            <div className={classes.character_header} style={{
-                backgroundImage: `url(${characters[params.id].Pact5})`,
-            }}>
-                <div></div>
-            </div>
+            <MainHeader className={classes.character_header} src={characters[params.id].Pact5}
+                children={<div></div>}/>
             <div className={classes.character_body}>
                 <nav>
                     <div className={classes.active}>Stats</div>

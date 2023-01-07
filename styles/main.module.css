@@ -118,12 +118,11 @@
 .character_body {
     width: 100%;
     max-width: 1000px;
-    height: 100vh;
+    height: 50vh;
     /* background-color: var(--color1); */
     z-index: 2;
     margin-top: 450px;
     border-top-right-radius: 5px;
-    overflow: hidden;
     display: flex;
 }
 
@@ -139,6 +138,8 @@
 .character_body > div {
     flex: 1;
     border-left: 2px solid rgb(202, 202, 202);
+    display: flex;
+    flex-direction: column;
     /* background-color: red; */
 }
 
@@ -189,8 +190,7 @@
 }
 
 .character_body > div > .content {
-    background-color:rgb(9, 23, 39, 0.95);
+    background-color:rgb(9, 23, 39, 0.75);
     backdrop-filter: blur(7px);
     flex: 1;
-    height: 100%;
 }

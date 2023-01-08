@@ -1,9 +1,11 @@
 'use client';
 import characters from "/data/characters.json"
 import classes from "/styles/main.module.css"
-
+import { useEffect } from 'react';
 
 function Gallery({params}) {
+    useEffect(() => window.document.scrollingElement?.scrollTo(0, 0), [])
+
     return (
         < div className={classes.gallery} >
             <div>

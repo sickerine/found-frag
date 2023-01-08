@@ -91,6 +91,14 @@
     background-color: transparent;
 }
 
+html {
+    --dominantColor1: 100,100,100;
+    --dominantColor2: 100,100,100;
+    --dominantColor3: 100,100,100;
+    --dominantColor4: 100,100,100;
+    --dominantColor5: 100,100,100;
+}
+
 body {
     display: flex;
     flex-direction: column;

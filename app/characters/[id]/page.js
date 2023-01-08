@@ -46,6 +46,59 @@ function GetChain(params) {
     )
 }
 
+function GetNormal(params) {
+    let ChainIcons = ["https://cdn.discordapp.com/attachments/633768073068806144/1061433958744735814/2cbefdbcb1478e88ecaca3135612b83a.png", "https://cdn.discordapp.com/attachments/633768073068806144/1061433959151566948/b7d3e1313cb213b005db6bb64b65ad83.png", "https://cdn.discordapp.com/attachments/633768073068806144/1061433958358863942/f9ffac3600c0014ad79f94ad9f7d354c.png"];
+    let Name = ["1st", "2nd", "3rd"]
+
+    return (
+        <div className={`${classes.chain}  ${classes.normal}`}>
+            <div className={classes.chainmain}>
+                <div className={classes.chaininfo}>
+                    <div className={classes.chainname}>
+                        {/* <SwordSVG/> */}
+                        <p>Normal <span>Attack</span></p>
+                    </div>
+                    <div className={classes.chaindata}>
+                        <div className={classes.chaincost}>
+                            <div>Speed</div>
+                            <div>{characters[params.id].NormalSpeed}</div>
+                        </div>
+                        <div className={classes.chaincd}>
+                            <div>Hits</div>
+                            <div>{characters[params.id].NormalTimes}</div>
+                        </div>
+                    </div>
+                </div>
+                <div className={classes.chainrange}>
+                    <img src={characters[params.id].NormalImage}></img>
+                    <div></div>
+                </div>
+            </div>
+            <div className={classes.chaindesc}>{characters[params.id].NormalDesc}</div>
+        </div>
+    )
+}
+
+function GetPassive(params) {
+    let ChainIcons = ["https://cdn.discordapp.com/attachments/633768073068806144/1061433958744735814/2cbefdbcb1478e88ecaca3135612b83a.png", "https://cdn.discordapp.com/attachments/633768073068806144/1061433959151566948/b7d3e1313cb213b005db6bb64b65ad83.png", "https://cdn.discordapp.com/attachments/633768073068806144/1061433958358863942/f9ffac3600c0014ad79f94ad9f7d354c.png"];
+    let Name = ["1st", "2nd", "3rd"]
+
+    return (
+        <div className={`${classes.chain}  ${classes.trait}`}>
+            <div className={`${classes.chainmain}  ${classes.trait}`}>
+                <div className={`${classes.chaininfo}  ${classes.trait}`}>
+                    <div className={`${classes.chainname}  ${classes.trait}`}>
+                        {/* <img src={ChainIcons[params.number - 1]}></img> */}
+                        <p>Traits</p>
+                    </div>
+                </div>
+            </div>
+            <div className={classes.chaindesc}>{characters[params.id][`Passive1`]}</div>
+            <div className={classes.chaindesc}>{characters[params.id][`Passive2`]}</div>
+        </div>
+    )
+}
+
 
 function CharacterPage({ params }) {
     const DominantColor = (which) => ("rgb(" + characters[params.id].DominantColors[which] + ")")
@@ -85,25 +138,46 @@ function CharacterPage({ params }) {
                                     <Info Title="Element" Value={characters[params.id].Element}></Info>
                                     <Info Title="Position" Value={characters[params.id].Position}></Info>
                                     <Info Title="VA" Value={characters[params.id].VA}></Info>
-                                </div>
-                                <div className={classes.statnumbers}>
-                                    <ul>
-                                        <div>BP</div>
-                                        <div>HP</div>
-                                        <div>ATK</div>
-                                    </ul>
-                                    <ul>
-                                        <div>{characters[params.id].Strength}</div>
-                                        <div>{characters[params.id].Health}</div>
-                                        <div>{characters[params.id].Attack}</div>
-                                    </ul>
+                                    <Info Title="Source" Value={characters[params.id].Get}></Info>
                                 </div>
                             </div>
                         </div>
+                        <div className={ classes.normalscontainer}>
+                                <div>
+                                    <div>BP</div>
+                                    <div>{characters[params.id].Strength}</div>
+                                </div>
+                                <div>
+                                    <div>ATK</div>
+                                    <div>{characters[params.id].Attack}</div>
+                                </div>
+                                <div>
+                                    <div>HP</div>
+                                    <div>{characters[params.id].Health}</div>
+                                </div>
+                                {/* <div>
+                                    <div>Normal</div>
+                                    <div>{characters[params.id].NormalDesc}</div>
+                                </div>
+                                <div>
+                                    <div>Speed</div>
+                                    <div>{characters[params.id].NormalSpeed}</div>
+                                </div>
+                                <div>
+                                    <div>Hits</div>
+                                    <div>{characters[params.id].NormalTimes}</div>
+                                </div>
+                                <div>
+                                    <img src={characters[params.id].NormalImage}></img>
+                                </div> */}
+                            </div>
                         <div className={classes.chains}>
+                            <GetNormal id={params.id} number={1}></GetNormal>
+
                             <GetChain id={params.id} number={1}></GetChain>
                             <GetChain id={params.id} number={2}></GetChain>
                             <GetChain id={params.id} number={3}></GetChain>
+                            <GetPassive id={params.id}></GetPassive>
                         </div>
                         <Gallery params={params}/>
                     </div>

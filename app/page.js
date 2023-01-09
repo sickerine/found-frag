@@ -4,6 +4,7 @@ import Link from 'next/link'
 import characters from "/data/characters.json"
 import FadeInImage from "./FadeInImage.js"
 import MainHeader from "./MainHeader.js"
+import ClientHome from "./ClientHome.js"
 
 function CharacterInformation({ item }) {
     return (
@@ -48,6 +49,7 @@ function Home() {
                     </div>
                 </article>
             </main>
+            <ClientHome/>
         </>
     )
 }

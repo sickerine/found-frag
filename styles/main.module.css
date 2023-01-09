@@ -1,3 +1,12 @@
+.fullscreen {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: red !important;
+    z-index: 100;
+}
+
 .iconcontainer {
     width: 100%;
     height: 280px;

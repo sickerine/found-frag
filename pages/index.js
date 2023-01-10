@@ -40,6 +40,7 @@ function Home() {
         <>
             <MainHeader className={classes.main_header} src={"https://cdn.discordapp.com/attachments/633768073068806144/1062479978878476329/top-min.png"} />
             <Head>
+                <meta name="google-site-verification" content="-No6hIRVmhkeltQYHyL_bCGwSHeP8sRULpxFVP78Wfo" />
                 <title>Home</title>
             </Head>
             <article>

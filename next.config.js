@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: true,
+    // appDir: true,
     scrollRestoration: true,
   },
   images: { domains: ['appmedia.jp', 'cdn.discordapp.com', 'media.discordapp.net'], },

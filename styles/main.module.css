@@ -30,6 +30,8 @@
 .main_header {
     height: 415px;
     width: 100%;
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(--color3);
     position: relative;
 }
 
@@ -48,6 +50,7 @@
     position: absolute;
     right: 0;
     left: 0;
+    top: 0;
     height: 1000px;
     /* background-position: 65% 90%; */
     box-shadow: inset 0px -500px 100px 00px var(--color1_D);
@@ -84,6 +87,12 @@
     transition: filter 0.25s;
 }
 
+
+.backgroundoverlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color1_D);
+}
 
 
 .characterlist {
@@ -221,7 +230,7 @@
     background-color: rgb(9, 23, 39, 0.75);
     backdrop-filter: blur(7px);
     flex: 1;
-    max-width: 798px;
+    max-width: 54rem;
 }
 
 .loading {

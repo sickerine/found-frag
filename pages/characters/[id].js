@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head'
 import FadeInImage from '../../components/FadeInImage';
 import MainHeader from '../../components/MainHeader';
+import fs from 'fs'
+import path from 'path'
 
 
 function Gallery(params) {
@@ -226,8 +228,8 @@ function Character({ obj })
 
 export async function getStaticProps({params})
 {
-    const req = await fetch("http://localhost:3000/characters.json")
-    const data = await req.json();
+    const filePath = path.join(process.cwd(), 'public','characters.json');
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
     return {
         props: {
@@ -238,8 +240,8 @@ export async function getStaticProps({params})
 
 export async function getStaticPaths() 
 {
-    const req = await fetch("http://localhost:3000/characters.json")
-    const data = await req.json();
+    const filePath = path.join(process.cwd(), 'public','characters.json');
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
     const paths = data.map((char, i) => {
         return {

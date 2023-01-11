@@ -44,6 +44,21 @@ function GetPassive(params) {
     let ChainIcons = ["https://cdn.discordapp.com/attachments/633768073068806144/1061433958744735814/2cbefdbcb1478e88ecaca3135612b83a.png", "https://cdn.discordapp.com/attachments/633768073068806144/1061433959151566948/b7d3e1313cb213b005db6bb64b65ad83.png", "https://cdn.discordapp.com/attachments/633768073068806144/1061433958358863942/f9ffac3600c0014ad79f94ad9f7d354c.png"];
     let Name = ["1st", "2nd", "3rd"]
 
+
+    let Desc = (string) => {
+        string = string.replaceAll("＜", "<").replaceAll("＞", ">")
+        let Split = string.split("<Pact 15>")
+        if (Split[1])
+        {
+            return (
+                <>
+                <p>{Split[0]}</p><span className={classes.Pact15}>Pact 15</span><p>{Split[1]}</p>
+                </>
+            )
+        }
+        return string
+    }
+
     return (
         <div className={`${classes.chain}  ${classes.trait}`}>
             <div className={`${classes.chainmain}  ${classes.trait}`}>
@@ -54,8 +69,8 @@ function GetPassive(params) {
                     </div>
                 </div>
             </div>
-            <div className={classes.chaindesc}>{params.obj[`Passive1`]}</div>
-            <div className={classes.chaindesc}>{params.obj[`Passive2`]}</div>
+            <div className={classes.chaindesc}>{Desc(params.obj[`Passive1`])}</div>
+            <div className={classes.chaindesc}>{Desc(params.obj[`Passive2`])}</div>
         </div>
     )
 }
@@ -188,7 +203,7 @@ function Character({ obj })
                                     <Info Title="Element" Value={obj.Element}></Info>
                                     <Info Title="Position" Value={obj.Position}></Info>
                                     <Info Title="VA" Value={obj.VA}></Info>
-                                    <Info Title="Source" Value={obj.Get}></Info>
+                                    {/* <Info Title="Source" Value={obj.Get}></Info> */}
                                 </div>
                             </div>
                         </div>

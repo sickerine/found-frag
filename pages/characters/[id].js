@@ -10,7 +10,7 @@ import path from 'path'
 
 function Gallery(params) {
     const [open, setOpen] = useState("Pact1")
-    
+
     return (
         < div className={classes.gallery} >
             {/* {open != 0 &&  */}
@@ -18,10 +18,10 @@ function Gallery(params) {
 
             </FadeInImage> */}
             {/* } */}
-            <div onClick={() => {params.setZoomImage("Pact1"); params.setZoomOpen(true)}} >
+            <div onClick={() => { params.setZoomImage("Pact1"); params.setZoomOpen(true) }} >
                 <FadeInImage className={classes.pact1art} src={params.obj.Pact1} />
             </div>
-            <div onClick={() => {params.setZoomImage("Pact5"); params.setZoomOpen(true)}}>
+            <div onClick={() => { params.setZoomImage("Pact5"); params.setZoomOpen(true) }}>
                 <FadeInImage className={classes.pact5art} src={params.obj.Pact5} />
             </div>
             {/* <FadeInImage src={characters[params.id].Pact1} />
@@ -48,11 +48,10 @@ function GetPassive(params) {
     let Desc = (string) => {
         string = string.replaceAll("＜", "<").replaceAll("＞", ">")
         let Split = string.split("<Pact 15>")
-        if (Split[1])
-        {
+        if (Split[1]) {
             return (
                 <>
-                <p>{Split[0]}</p><span className={classes.Pact15}>Pact 15</span><p>{Split[1]}</p>
+                    <p>{Split[0]}</p><span className={classes.Pact15}>Pact 15</span><p>{Split[1]}</p>
                 </>
             )
         }
@@ -158,65 +157,70 @@ function DominantColors(params) {
 function ImageZoom(params) {
     const [zoom, setZoom] = useState(1);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const [zoomCounter, setZoomCounter] = useState(0);
     const imgRef = useRef(null);
-  
-    const handleDoubleClick = (e) => {
-      setZoomCounter(zoomCounter + 1)
-      const zoomAmount = 1.5;
-      if (zoomCounter === 0) {
-          setZoom(zoom * zoomAmount);
-      } else if (zoomCounter === 2){
-          setZoom(1);
-          setPosition({ x: 0, y: 0 });
-          setZoomCounter(0)
-      } else if (zoomCounter === 1) {
-          setZoom(zoom * zoomAmount * zoomAmount);
-      }
+    const zoomAmount = useRef(1);
+
+    const handleWheel = (e) => {
+        e.preventDefault();
+        zoomAmount.current += (e.deltaY < 0 ? 0.1 : -0.1);
+        if (zoomAmount.current < 1)
+        {
+            zoomAmount.current = 1;
+            setPosition({
+                x: 0,
+                y: 0
+            });
+        }
+        setZoom(zoomAmount.current);
     };
-  
+    
+    useEffect(() => {
+        document.addEventListener("wheel", handleWheel, { passive: false });
+        return () => {
+            document.removeEventListener("wheel", handleWheel);
+        };
+    }, []);
+
     const handleMouseDown = (e) => {
         if (zoom === 1) {
             return
         }
-      e.preventDefault();
-      const initialX = (e.clientX / zoom) - position.x;
-      const initialY = (e.clientY / zoom) - position.y;
-  
-      const handleMouseMove = (e) => {
-        setPosition({
-          x: (e.clientX / zoom) - initialX,
-          y: (e.clientY / zoom) - initialY
+        e.preventDefault();
+        const initialX = (e.clientX / zoom) - position.x;
+        const initialY = (e.clientY / zoom) - position.y;
+
+        const handleMouseMove = (e) => {
+            setPosition({
+                x: (e.clientX / zoom) - initialX,
+                y: (e.clientY / zoom) - initialY
+            });
+        };
+
+        document.addEventListener("mousemove", handleMouseMove);
+
+        document.addEventListener("mouseup", () => {
+            document.removeEventListener("mousemove", handleMouseMove);
         });
-      };
-  
-      document.addEventListener("mousemove", handleMouseMove);
-  
-      document.addEventListener("mouseup", () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-      });
     };
-  
+
     return (
-      <div className={classes.zoom}>
-        <img 
-          src={params.src} 
-          style={{ 
-            transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
-            cursor: zoom === 1 ? 'default' : 'move'
-          }}
-          onDoubleClick={handleDoubleClick}
-          onMouseDown={handleMouseDown}
-          ref={imgRef}
-        />
-        <img onClick={()=> {params.setZoomOpen(false)}} src={"https://cdn.discordapp.com/attachments/633768073068806144/1063181908407763024/plus.png"} className={classes.close}/>
-      </div>
+        <div className={classes.zoom} onMouseDown={handleMouseDown}
+        >
+            <img
+                src={params.src}
+                style={{
+                    transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px) rotate(${params.zoomImage == "Pact1" ? 90 : 0}deg)`,
+                    cursor: zoom === 1 ? 'default' : 'move'
+                }}
+                ref={imgRef}
+            />
+            <img onClick={() => { params.setZoomOpen(false) }} src={"https://cdn.discordapp.com/attachments/633768073068806144/1063181908407763024/plus.png"} className={classes.close} />
+        </div>
     );
-  }
+}
 
 
-function Character({ obj })
-{
+function Character({ obj }) {
     const [zoomImage, setZoomImage] = useState("Pact5")
     const [zoomOpen, setZoomOpen] = useState(false)
 
@@ -233,7 +237,7 @@ function Character({ obj })
                 } : {}} src={obj[zoomImage]}></FadeInImage>
             </div>} */}
             {
-                zoomOpen && <ImageZoom src={obj[zoomImage]} setZoomOpen={setZoomOpen}></ImageZoom>
+                zoomOpen && <ImageZoom src={obj[zoomImage]} setZoomOpen={setZoomOpen} zoomImage={zoomImage}></ImageZoom>
             }
             <div className={classes.backgroundoverlay}></div>
             <Head>
@@ -276,29 +280,29 @@ function Character({ obj })
                                 </div>
                             </div>
                         </div>
-                        <div className={ classes.normalscontainer}>
-                                <div>
-                                    <div>BP</div>
-                                    <div>{obj.Strength}</div>
-                                </div>
-                                <div>
-                                    <div>ATK</div>
-                                    <div>{obj.Attack}</div>
-                                </div>
-                                <div>
-                                    <div>HP</div>
-                                    <div>{obj.Health}</div>
-                                </div>
+                        <div className={classes.normalscontainer}>
+                            <div>
+                                <div>BP</div>
+                                <div>{obj.Strength}</div>
                             </div>
+                            <div>
+                                <div>ATK</div>
+                                <div>{obj.Attack}</div>
+                            </div>
+                            <div>
+                                <div>HP</div>
+                                <div>{obj.Health}</div>
+                            </div>
+                        </div>
                         <div className={classes.chains}>
                             <GetNormal id={id} number={1} obj={obj}></GetNormal>
 
                             <GetChain id={id} number={1} obj={obj}></GetChain>
                             <GetChain id={id} number={2} obj={obj}></GetChain>
                             <GetChain id={id} number={3} obj={obj}></GetChain>
-                            <GetPassive id={id}  obj={obj}></GetPassive>
+                            <GetPassive id={id} obj={obj}></GetPassive>
                         </div>
-                        <Gallery id={id} obj={obj} setZoomOpen={setZoomOpen} setZoomImage={setZoomImage}/>
+                        <Gallery id={id} obj={obj} setZoomOpen={setZoomOpen} setZoomImage={setZoomImage} />
                     </div>
                 </div>
                 <div className={classes.character_name}>
@@ -310,9 +314,8 @@ function Character({ obj })
     )
 }
 
-export async function getStaticProps({params})
-{
-    const filePath = path.join(process.cwd(), 'public','characters.json');
+export async function getStaticProps({ params }) {
+    const filePath = path.join(process.cwd(), 'public', 'characters.json');
     const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
     return {
@@ -322,9 +325,8 @@ export async function getStaticProps({params})
     }
 }
 
-export async function getStaticPaths() 
-{
-    const filePath = path.join(process.cwd(), 'public','characters.json');
+export async function getStaticPaths() {
+    const filePath = path.join(process.cwd(), 'public', 'characters.json');
     const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'))
 
     const paths = data.map((char, i) => {

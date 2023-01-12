@@ -157,12 +157,11 @@ function DominantColors(params) {
 function ImageZoom(params) {
     const [zoom, setZoom] = useState(1);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const imgRef = useRef(null);
     const zoomAmount = useRef(1);
 
     const handleWheel = (e) => {
         e.preventDefault();
-        zoomAmount.current += (e.deltaY < 0 ? 0.1 : -0.1);
+        zoomAmount.current += (e.deltaY < 0 ? 0.1 : -0.2);
         if (zoomAmount.current < 1)
         {
             zoomAmount.current = 1;
@@ -206,13 +205,12 @@ function ImageZoom(params) {
     return (
         <div className={classes.zoom} onMouseDown={handleMouseDown}
         >
-            <img
+            <FadeInImage
                 src={params.src}
                 style={{
                     transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px) rotate(${params.zoomImage == "Pact1" ? 90 : 0}deg)`,
                     cursor: zoom === 1 ? 'default' : 'move'
                 }}
-                ref={imgRef}
             />
             <img onClick={() => { params.setZoomOpen(false) }} src={"https://cdn.discordapp.com/attachments/633768073068806144/1063181908407763024/plus.png"} className={classes.close} />
         </div>

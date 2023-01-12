@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import classes from "/styles/main.module.css";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Head from 'next/head'
 import FadeInImage from '../../components/FadeInImage';
 import MainHeader from '../../components/MainHeader';
@@ -18,10 +18,10 @@ function Gallery(params) {
 
             </FadeInImage> */}
             {/* } */}
-            <div>
+            <div onClick={() => {params.setZoomImage("Pact1"); params.setZoomOpen(true)}} >
                 <FadeInImage className={classes.pact1art} src={params.obj.Pact1} />
             </div>
-            <div>
+            <div onClick={() => {params.setZoomImage("Pact5"); params.setZoomOpen(true)}}>
                 <FadeInImage className={classes.pact5art} src={params.obj.Pact5} />
             </div>
             {/* <FadeInImage src={characters[params.id].Pact1} />
@@ -155,17 +155,86 @@ function DominantColors(params) {
     </>)
 }
 
-
+function ImageZoom(params) {
+    const [zoom, setZoom] = useState(1);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [zoomCounter, setZoomCounter] = useState(0);
+    const imgRef = useRef(null);
+  
+    const handleDoubleClick = (e) => {
+      setZoomCounter(zoomCounter + 1)
+      const zoomAmount = 1.5;
+      if (zoomCounter === 0) {
+          setZoom(zoom * zoomAmount);
+      } else if (zoomCounter === 2){
+          setZoom(1);
+          setPosition({ x: 0, y: 0 });
+          setZoomCounter(0)
+      } else if (zoomCounter === 1) {
+          setZoom(zoom * zoomAmount * zoomAmount);
+      }
+    };
+  
+    const handleMouseDown = (e) => {
+        if (zoom === 1) {
+            return
+        }
+      e.preventDefault();
+      const initialX = (e.clientX / zoom) - position.x;
+      const initialY = (e.clientY / zoom) - position.y;
+  
+      const handleMouseMove = (e) => {
+        setPosition({
+          x: (e.clientX / zoom) - initialX,
+          y: (e.clientY / zoom) - initialY
+        });
+      };
+  
+      document.addEventListener("mousemove", handleMouseMove);
+  
+      document.addEventListener("mouseup", () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+      });
+    };
+  
+    return (
+      <div className={classes.zoom}>
+        <img 
+          src={params.src} 
+          style={{ 
+            transform: `scale(${zoom}) translate(${position.x}px, ${position.y}px)`,
+            cursor: zoom === 1 ? 'default' : 'move'
+          }}
+          onDoubleClick={handleDoubleClick}
+          onMouseDown={handleMouseDown}
+          ref={imgRef}
+        />
+        <img onClick={()=> {params.setZoomOpen(false)}} src={"https://cdn.discordapp.com/attachments/633768073068806144/1063181908407763024/plus.png"} className={classes.close}/>
+      </div>
+    );
+  }
 
 
 function Character({ obj })
 {
+    const [zoomImage, setZoomImage] = useState("Pact5")
+    const [zoomOpen, setZoomOpen] = useState(false)
+
     const router = useRouter();
     const { id } = router.query;
     const DominantColor = (which) => ("rgb(" + obj.DominantColors[which] + ")")
     const PageName = `Characters / ${obj.EnglishName}`
+
     return (
         <>
+            {/* {zoomOpen && <div className={classes.zoom} onClick={()=>{setZoomOpen(false)}}>
+                <FadeInImage style={zoomImage == "Pact1" ? {
+                    transform: `rotate(90deg)`
+                } : {}} src={obj[zoomImage]}></FadeInImage>
+            </div>} */}
+            {
+                zoomOpen && <ImageZoom src={obj[zoomImage]} setZoomOpen={setZoomOpen}></ImageZoom>
+            }
             <div className={classes.backgroundoverlay}></div>
             <Head>
                 <title>{PageName}</title>
@@ -229,7 +298,7 @@ function Character({ obj })
                             <GetChain id={id} number={3} obj={obj}></GetChain>
                             <GetPassive id={id}  obj={obj}></GetPassive>
                         </div>
-                        <Gallery id={id} obj={obj}/>
+                        <Gallery id={id} obj={obj} setZoomOpen={setZoomOpen} setZoomImage={setZoomImage}/>
                     </div>
                 </div>
                 <div className={classes.character_name}>

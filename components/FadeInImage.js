@@ -23,6 +23,7 @@ export default function FadeInImage(props) {
     return (
         <img
             src={props.src}
+            style={props.style}
             className={isCached ? props.className : (isImageLoaded ? `${props.className} ${classes.loaded}` : `${props.className} ${classes.loading}`)}
         />
     )
